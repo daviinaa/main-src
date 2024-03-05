@@ -16,10 +16,11 @@ def get_reverse_ip_address():
     # # If there are multiple IP addresses (due to proxies), use the first one
     # client_ip = client_ip.split(',')[0].strip() ## would uncomment this later for testing
     
-    # Reverse the public IP address
+# revered ip
     reversed_public_ip = reverse_ip_address(get_client_ip)
     
     return f'Here you go, your reversed public IP: {reversed_public_ip}'
 
 if __name__ == '__main__':
     app.run(debug=True)
+
