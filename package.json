@@ -1,0 +1,22 @@
+{
+  "name": "reverse-deel",
+  "version": "1.0.0",
+  "description": "This project builds a web application that that prints the origin public IP of any request it receives in reverse.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daviinaa/reverse-deel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daviinaa/reverse-deel/issues"
+  },
+  "homepage": "https://github.com/daviinaa/reverse-deel#readme",
+  "dependencies": {
+    "express": "^4.18.3"
+  }
+}
