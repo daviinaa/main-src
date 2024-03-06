@@ -8,7 +8,7 @@ on:
 env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKERHUB_KEY: ${{ secrets.DOCKER_KEY }}
-  IMAGE_NAME: flip-ip:v0.6
+  IMAGE_NAME: flip-ip
   MANIFEST_DIR: argocd/apps
 
 jobs:
