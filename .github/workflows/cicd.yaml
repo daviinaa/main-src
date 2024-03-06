@@ -32,17 +32,16 @@ jobs:
         run: |
           IMAGE_TAG=${{ github.sha }}
           docker build -t ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG} .
-          echo "::set-output name=IMAGE_TAG::${IMAGE_TAG}"
 
       - name: Push Docker image
-        run: docker push ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.docker_build.outputs.IMAGE_TAG }}
+        run: docker push ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${IMAGE_TAG}
 
       - name: deploy application via argcd
         run: |
           cd ${{ env.MANIFEST_DIR }}
           ls
           cat flip-values.yaml
-          sed -i 's|image:\s*repository:.*|image:\n    repository: '${{ env.DOCKERHUB_USERNAME }}'/'${{ env.IMAGE_NAME }}':'${{ needs.build-and-deploy.outputs.IMAGE_TAG }}'|' flip-values.yaml
+          sed -i 's|image:\s*repository:.*|image:\n repository: '${{ env.DOCKERHUB_USERNAME }}'/'${{ env.IMAGE_NAME }}':'${IMAGE_TAG}'|' flip-values.yaml
           cat flip-values.yaml
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
