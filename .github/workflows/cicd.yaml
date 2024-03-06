@@ -9,7 +9,7 @@ env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKERHUB_KEY: ${{ secrets.DOCKER_KEY }}
   IMAGE_NAME: flip-ip
-  MANIFEST_DIR: apps
+  MANIFEST_DIR: argocd/apps
 
 jobs:
   build-and-deploy:
@@ -36,7 +36,7 @@ jobs:
 
       - name: deploy application via argcd
         run: |
-          cd argocd/apps
+          cd ${{ env.MANIFEST_DIR }}
           ls
           sed -i 's|APP_VERSION:.*|APP_VERSION: '${{ github.sha }}'|' flip-values.yaml 
           git config --global user.name 'GitHub Actions'
