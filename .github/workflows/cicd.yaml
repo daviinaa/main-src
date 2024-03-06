@@ -10,6 +10,9 @@ env:
   DOCKERHUB_KEY: ${{ secrets.DOCKER_KEY }}
   IMAGE_NAME: flip-ip
   MANIFEST_DIR: argocd/apps
+  GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+  GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+  RUN_NUMBER: ${{ github.run_number }}
 
 jobs:
   build-and-deploy:
@@ -34,16 +37,25 @@ jobs:
           context: .
           push: true
           tags: ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:app-${{ github.run_number }}
-
-      - name: deploy application via argcd
+          
+  deploy:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: deploying application with new image tag
+        with:
+          repository: 'daviinaa/argocd-manifests-'
+          token: ${{ secrets.GIT_PASSWORD }}
+      - name: update image
         run: |
-          cd ${{ env.MANIFEST_DIR }}
-          ls
+          git config user.email 'actions@github.com'
+          git config user.name 'GitHub Actions'
+          pwd
           cat flip-values.yaml
+          pwd
           sed -i "s+${{ env.DOCKERHUB_USERNAME }}/{{ env.IMAGE_NAME }}.*+$${{ env.DOCKERHUB_USERNAME }}/{{ env.IMAGE_NAME }}:app-$RUN_NUMBER+g" flip-values.yaml       
           cat flip-values.yaml
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          git add flip-values.yaml
-          git commit -m "Update application with new image tag"
-          git push
+          git add .
+          git commit -m 'Done  by Github Actions   Job changemanifest: ${{ github.run_number }}'
+          git push origin main
