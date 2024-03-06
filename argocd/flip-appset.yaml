@@ -3,7 +3,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: dev-appset
+  name: flip-appset
   namespace: argocd
 spec:
   generators:
@@ -17,6 +17,9 @@ spec:
       name: '{{name}}'
     spec:
       project: '{{project}}'
+  template:
+      spec:
+        project: default
       source:
         chart: flip-ip
         repoURL: https://github.com/daviinaa/reverse-deel.git
