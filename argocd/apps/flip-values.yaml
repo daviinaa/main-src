@@ -2,7 +2,7 @@ name: flip-app
 project: flip-ip
 namespace: flip
 values: |-
-  fullnameOverride: flip-test
+  fullnameOverride: flip-app
   image:
     repository: nginx 
   namespace: flip
