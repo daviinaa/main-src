@@ -4,7 +4,7 @@ namespace: flip
 values: |-
   fullnameOverride: flip-app
   image:
-    repository: daviinaa/flip-ip:${{ github.sha }}
+    repository: daviinaa/flip-ip:
   namespace: flip
   containerPort: 3000
   managedidentity:
