@@ -47,7 +47,7 @@ jobs:
         name: deploying application with new image tag
         with:
           repository: 'daviinaa/argocd-manifests-'
-          token: ${{ secrets.GIT_PASSWORD }}
+          token: ${{ secrets.GIT_TOKEN }}
       - name: update image
         run: |
           git config user.email 'actions@github.com'
