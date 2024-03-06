@@ -19,7 +19,7 @@ spec:
       source:
         chart: flip-ip
         repoURL: https://daviinaa.github.io/helm-chart/
-        targetRevision: 0.1.0
+        targetRevision: 0.1.1
         helm:
           values: |-
             {{values}}
