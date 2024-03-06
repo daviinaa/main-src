@@ -12,7 +12,7 @@ values: |-
   autoscaling:
       enabled: true
   ingress:
-    host: reverse
+    host: reverse.divineanthony.com
   lProbe:
       enabled: false
   rProbe:
