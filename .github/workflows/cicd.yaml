@@ -35,7 +35,7 @@ jobs:
           echo "::set-output name=IMAGE_TAG::${IMAGE_TAG}"
 
       - name: Push Docker image
-        run: docker push ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ needs.build-and-deploy.outputs.IMAGE_TAG }}
+        run: docker push ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.docker_build.outputs.IMAGE_TAG }}
 
       - name: deploy application via argcd
         run: |
