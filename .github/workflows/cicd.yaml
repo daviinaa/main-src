@@ -15,7 +15,7 @@ env:
   RUN_NUMBER: ${{ github.run_number }}
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,8 +39,9 @@ jobs:
           tags: ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:app-${{ github.run_number }}
           
   deploy:
-    needs: docker
+    needs: build
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
         name: deploying application with new image tag
