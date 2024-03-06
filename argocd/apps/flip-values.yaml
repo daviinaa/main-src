@@ -4,13 +4,15 @@ namespace: flip
 values: |-
   fullnameOverride: test-chart
   image:
-    repository: nginx
+    repository: nginx 
   namespace: flip
   containerPort: 3000
   managedidentity:
       enabled: true
   autoscaling:
       enabled: true
+  ingress:
+    host: reverse
   lProbe:
       enabled: false
   rProbe:

@@ -1,5 +1,4 @@
 ## DevOps K8 admin should apply this directly to the argocd namespace in the devops EKS cluster
-
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -17,12 +16,9 @@ spec:
       name: '{{name}}'
     spec:
       project: '{{project}}'
-  template:
-      spec:
-        project: default
       source:
         chart: flip-ip
-        repoURL: https://github.com/daviinaa/reverse-deel.git
+        repoURL: https://daviinaa.github.io/helm-chart/
         targetRevision: 0.1.0
         helm:
           values: |-
