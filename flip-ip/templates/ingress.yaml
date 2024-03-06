@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.fullnameOverride }}
   namespace: {{ .Values.namespace }}
 spec:
-  ingressClassName: {{ .Values.ingress.ingressClassName | default "nginx"}}
+  ingressClassName: nginx
   rules:
     # - host: "{{ .Values.ingress.host }}.divineanthony.com"
       - http:
