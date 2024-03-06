@@ -37,8 +37,6 @@ jobs:
       - name: Push Docker image
         run: docker push ${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ needs.build-and-deploy.outputs.IMAGE_TAG }}
 
-      - name: Deploy application via argcd
-
       - name: deploy application via argcd
         run: |
           cd ${{ env.MANIFEST_DIR }}
