@@ -2,16 +2,16 @@ name: flip-app
 project: flip-ip
 namespace: flip
 values: |-
-  fullnameOverride: flip-app
+  fullnameOverride: test-chart
   image:
     repository: nginx
   namespace: flip
-  containerPort: 80
+  containerPort: 3000
+  managedidentity:
+      enabled: true
   autoscaling:
-    enabled: true
-  env:
-    enabled: false
+      enabled: true
   lProbe:
-    enabled: false
+      enabled: false
   rProbe:
-    enabled: false
+      enabled: false
