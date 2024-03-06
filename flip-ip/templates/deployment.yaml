@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.fullnameOverride}}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+   matchLabels:
+    app: {{ .Values.fullnameOverride }}
+  replicas: {{ .Values.replicaCount | default 1 }}
+  revisionHistoryLimit: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  minReadySeconds: 60
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.fullnameOverride }}
+    spec:
+      containers:
+      - name: {{ .Values.fullnameOverride }}
+        image: {{ .Values.image.repository }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{ .Values.containerPort}} 
+          name: http
+          protocol: TCP
+        {{- if .Values.lProbe.enabled }} #If enabled=true in the values.yaml, declare the probe parameters in the values.yaml
+        {{- with .Values.livenessProbe }}
+        livenessProbe:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- end }}
+        {{- if .Values.rProbe.enabled }}
+        {{- with .Values.readinessProbe }}
+        readinessProbe:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- end }}
+        resources:
+        {{- $resources := .Values.resources | default dict }}
+        {{- if $resources }}
+          requests:
+            cpu: {{ $resources.requests.cpu | default "0.2" | quote}}
+            memory: {{ $resources.requests.memory | default "500Mi" | quote}} 
+            ephemeral-storage: 200Mi 
+          limits:
+            cpu: {{ $resources.limits.cpu | default "0.5" | quote}}
+            memory: {{ $resources.limits.memory | default "1Gi" | quote}}
+            ephemeral-storage: 1Gi 
+        {{- else }}
+          requests:
+            cpu: 0.2
+            memory: 500Mi
+            ephemeral-storage: 200Mi
+          limits:
+            cpu: 0.5
+            memory: 1Gi
+            ephemeral-storage: 1Gi
+        {{- end }}
