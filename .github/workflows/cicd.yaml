@@ -36,7 +36,7 @@ jobs:
 
       - name: deploy application via argcd
         run: |
-          cd helm
+          cd argocd
           sed -i 's|APP_VERSION:.*|APP_VERSION: '${{ github.sha }}'|' ${{ env.MANIFEST_DIR }}/flip-values.yaml 
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
