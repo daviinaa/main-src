@@ -51,16 +51,16 @@ jobs:
           ref: main
       - name: update image
         run: |
+          cd ${{ env.MANIFEST_DIR }}
+          sed -i "s|${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}.*|${{ env.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:app-${{ github.run_number }}|g" flip-values.yaml
           git config user.email theanthonydavina@gmail.com
           git config user.name daviinaa
-          pwd
-          cd ${{ env.MANIFEST_DIR }}
-          cat flip-values.yaml
-          pwd
-          sed -i "s+daviinna/flip-ip.*+daviinaa/flip-ip:app-${{ github.run_number }}+g" flip-values.yaml 
-          cat flip-values.yaml
-          git add .
-          git commit -m 'Done  by Github Actions Job changemanifest: ${{ github.run_number }}'
+          git add flip-values.yaml
+          git diff --staged  # Debugging: print the changes to be committed
+          git commit -m "Done by Github Actions Job changemanifest: ${{ github.run_number }}"
           git push origin main
 
+
         # sed -i "s+${{ env.DOCKERHUB_USERNAME }}/{{ env.IMAGE_NAME }}.*+$${{ env.DOCKERHUB_USERNAME }}/{{ env.IMAGE_NAME }}:app-$RUN_NUMBER+g" flip-values.yaml       
+
+
