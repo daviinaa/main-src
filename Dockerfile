@@ -1,21 +1,13 @@
 FROM node:16-alpine
 
-RUN mkdir -p /home/node/app
+WORKDIR /usr/src/app
 
-WORKDIR /home/node/app
 COPY package*.json ./
-RUN npm install
 
-COPY --chown=node:node . .
 RUN npm run build
+RUN npm install --only=production
 
-USER node
+COPY . .
+EXPOSE 3000
 
-ENV PORT 3000
-ENV HTTPS_PORT 443
-ENV HOST="0.0.0.0"
-
-EXPOSE $PORT
-EXPOSE $HTTPS_PORT
-
-CMD [ "npm", "start" ]
+CMD [ "node", "index.js" ]
