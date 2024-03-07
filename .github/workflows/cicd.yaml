@@ -61,6 +61,3 @@ jobs:
           git push origin main
 
 
-        # sed -i "s+${{ env.DOCKERHUB_USERNAME }}/{{ env.IMAGE_NAME }}.*+$${{ env.DOCKERHUB_USERNAME }}/{{ env.IMAGE_NAME }}:app-$RUN_NUMBER+g" flip-values.yaml       
-
-
