@@ -59,5 +59,3 @@ jobs:
           git diff --staged  # Debugging: print the changes to be committed
           git commit -m "Done by Github Actions Job changemanifest: ${{ github.run_number }}"
           git push origin main
-
-
