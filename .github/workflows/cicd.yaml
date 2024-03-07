@@ -48,11 +48,13 @@ jobs:
         with:
           repository: 'daviinaa/argocd-manifests'
           token: ${{ secrets.GIT_TOKEN }}
+          ref: main
       - name: update image
         run: |
           git config user.email theanthonydavina@gmail.com
           git config user.name daviinaa
           pwd
+          cd ${{ env.MANIFEST_DIR }}
           cat flip-values.yaml
           pwd
           sed -i "s+${{ env.DOCKERHUB_USERNAME }}/{{ env.IMAGE_NAME }}.*+$${{ env.DOCKERHUB_USERNAME }}/{{ env.IMAGE_NAME }}:app-$RUN_NUMBER+g" flip-values.yaml       
