@@ -53,5 +53,5 @@ Horozontal pod Autoscaler: this scales up and down based on the application requ
 This also ensures high reliability and scalability
 
 Final Deployment:
-The deployed application can be accessed at your-app-url (replace with the actual deployed URL).
+The deployed application can be accessed at http://35.226.27.83/ 
 In summary, this project focused on reliability, cost, scalability, automation and security, utilizing GitHub Actions for CI, ArgoCD for CD, Helm charts for Kubernetes resource templating, and GCP Autopilot for a managed Kubernetes cluster. The overall architecture ensures a streamlined and secure deployment process, adhering to best practices in the DevOps domain.
