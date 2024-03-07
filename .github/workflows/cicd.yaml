@@ -49,7 +49,6 @@ jobs:
           repository: 'daviinaa/argocd-manifests'
           token: ${{ secrets.GIT_TOKEN }}
           ref: main
-          fetch-depth: 10
       - name: update image
         run: |
           git config user.email theanthonydavina@gmail.com
