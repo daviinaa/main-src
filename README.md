@@ -1,16 +1,7 @@
-##first take of the assessment using argocd & helm to deploy 
-
-This project builds a web application that that prints the origin public IP of any request it receives in reverse.
-
-##specify where db would be stored
+This project builds a tiny web application that that prints the origin public IP of any request it receives in reverse.
 
 Builds a docker image of the app and an helm chart.
 CI\CD pipeline using github actions that builds the docker image, push to a docker registry and then Argocd deploy everything to GKE
-
-
-UPDATE ON TASK
-Completed the project of building and deploying a web application that prints the reverse IP of incoming requests. The code was written in nodejs.
-I utilized a set of modern tools and practices to automate the CI/CD pipeline, enhance security, and streamline deployment on Google Kubernetes Engine (GKE) using GCP Autopilot.
 
 Repository Structure:
 
@@ -55,3 +46,5 @@ This also ensures high reliability and scalability
 Final Deployment:
 The deployed application can be accessed at http://35.226.27.83/ 
 In summary, this project focused on reliability, cost, scalability, automation and security, utilizing GitHub Actions for CI, ArgoCD for CD, Helm charts for Kubernetes resource templating, and GCP Autopilot for a managed Kubernetes cluster. The overall architecture ensures a streamlined and secure deployment process, adhering to best practices in the DevOps domain.
+
+(ingress no longer accessible )
